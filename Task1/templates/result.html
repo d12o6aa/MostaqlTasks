@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>نتيجة البحث</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <div class="card shadow-sm">
+            <div class="card-body">
+
+                {% if error %}
+                    <div class="alert alert-danger text-center" role="alert">
+                        {{ error }}
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="/" class="btn btn-outline-primary">عودة للصفحة الرئيسية</a>
+                    </div>
+                {% else %}
+                    <h3 class="text-success mb-4 text-center">✅ الفيديو موجود في القوائم التالية:</h3>
+                    <ul class="list-group">
+                        {% for item in results %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-column flex-md-row">
+                            <div>
+                                <strong>{{ item.playlist_title }}</strong><br>
+                                القناة: {{ item.channel_title }}
+                            </div>
+                            <a href="https://www.youtube.com/playlist?list={{ item.playlist_id }}" target="_blank" class="btn btn-sm btn-primary mt-2 mt-md-0">
+                                عرض القائمة
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="text-center mt-4">
+                        <a href="/" class="btn btn-outline-secondary">بحث جديد</a>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
